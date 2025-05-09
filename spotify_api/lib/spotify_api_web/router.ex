@@ -18,6 +18,7 @@ defmodule SpotifyApiWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/artists/:name/albums", ArtistController, :index
   end
 
   # Other scopes may use custom stacks.
