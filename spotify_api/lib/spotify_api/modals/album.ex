@@ -2,12 +2,15 @@ defmodule SpotifyApi.Modals.Album do
   import Ecto.Changeset
   use Ecto.Schema
 
+  alias SpotifyApi.Modals.Artist
+
+  @derive {Jason.Encoder, only: [:name, :spotify_id, :release_date]}
   schema "albums" do
     field :name, :string
-    field :release_date, :string
+    field :release_date, :date
     field :spotify_id, :string
 
-    belongs_to :artist, SpotifyApi.Modals.Artist
+    belongs_to :artist, Artist
     timestamps()
   end
 
@@ -18,5 +21,6 @@ defmodule SpotifyApi.Modals.Album do
     album
     |> cast(attrs, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
+    |> unique_constraint(:spotify_id)
   end
 end

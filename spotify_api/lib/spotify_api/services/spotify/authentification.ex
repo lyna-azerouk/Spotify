@@ -13,7 +13,7 @@ defmodule SpotifyApi.Services.Spotify.Authentification do
   def authenticate() do
     config = Config.new()
 
-    case HTTPoison.post(config.api_url <> "/api/token", config.body, config.headers) do
+    case HTTPoison.post(config.api_url, config.body, config.headers) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         {:ok, parse_token(body)}
 

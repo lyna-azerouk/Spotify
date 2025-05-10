@@ -4,7 +4,7 @@ defmodule SpotifyApi.Repo.Migrations.AddArtistsTable do
   def change do
     create table(:artists) do
       add :name, :string
-      add :spotify_id, :string
+      add :spotify_id, :string, null: false
 
       timestamps()
     end
