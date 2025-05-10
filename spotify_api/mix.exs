@@ -60,7 +60,9 @@ defmodule SpotifyApi.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
       {:joken, "~> 2.6"},
-      {:httpoison, "~> 2.0"}
+      {:httpoison, "~> 2.0"},
+      {:ex_json_schema, "~> 0.7"},
+      {:open_api_spex, "~> 3.21"}
     ]
   end
 

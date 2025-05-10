@@ -14,8 +14,8 @@ defmodule SpotifyApi.Modals.Album do
     timestamps()
   end
 
-  @required_fields [:name, :release_date, :spotify_id]
-  @optional_fields []
+  @required_fields [:name, :spotify_id]
+  @optional_fields [:release_date]
 
   def changeset(album, attrs) do
     album

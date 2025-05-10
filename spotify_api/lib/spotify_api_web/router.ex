@@ -15,10 +15,19 @@ defmodule SpotifyApiWeb.Router do
   end
 
   scope "/", SpotifyApiWeb do
-    pipe_through :browser
+    pipe_through :api
 
-    get "/", PageController, :home
-    get "/artists/:name/albums", ArtistController, :index
+    get "/artists/:name/albums", AlbumController, :index
+  end
+
+  scope "/" do
+    pipe_through :api
+
+    get "/api/openapi", SpotifyApiWeb.OpenApiController, :spec
+
+    get "/swaggerui", OpenApiSpex.Plug.SwaggerUI,
+      path: "",
+      urls: [%{url: "/api/openapi", name: "Mon API"}]
   end
 
   # Other scopes may use custom stacks.

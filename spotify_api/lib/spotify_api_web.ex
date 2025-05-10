@@ -44,6 +44,7 @@ defmodule SpotifyApiWeb do
 
       import Plug.Conn
       import SpotifyApiWeb.Gettext
+      plug OpenApiSpex.Plug.PutApiSpec, module: SpotifyApiWeb.ApiSpec
 
       unquote(verified_routes())
     end

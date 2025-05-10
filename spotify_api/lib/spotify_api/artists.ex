@@ -59,6 +59,7 @@ defmodule SpotifyApi.Artists do
     %Artist{}
     |> Artist.changeset(attrs)
     |> Repo.insert()
+    |> IO.inspect(label: "Artist Created")
   end
 
   defp update_artist(artist, attrs) do
