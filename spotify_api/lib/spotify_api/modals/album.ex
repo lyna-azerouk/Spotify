@@ -7,7 +7,7 @@ defmodule SpotifyApi.Modals.Album do
   @derive {Jason.Encoder, only: [:name, :spotify_id, :release_date]}
   schema "albums" do
     field :name, :string
-    field :release_date, :date
+    field :release_date, :string
     field :spotify_id, :string
 
     belongs_to :artist, Artist

@@ -27,12 +27,10 @@ defmodule SpotifyApiWeb.AlbumController do
     case Artists.maybe_create_artist(name) do
       {:ok, artist} ->
         conn
-        |> put_status(:created)
-        |> put_resp_content_type("application/json")
+        |> put_status(:ok)
         |> json(%{artist: artist})
 
       {:error, changeset} ->
-        # IO.inspect(changeset, label: "Error creating artist")
         conn
         |> put_status(:unprocessable_entity)
         |> json(changeset)
