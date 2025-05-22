@@ -5,6 +5,7 @@ defmodule SpotifyApiWeb.AlbumController do
 
   alias SpotifyApi.Artists
   alias SpotifyApiWeb.Schemas.AlbumsResponse
+  alias SpotifyApiWeb.AlbumTemplateJSON
 
   tags(["albums"])
 
@@ -28,7 +29,10 @@ defmodule SpotifyApiWeb.AlbumController do
       {:ok, artist} ->
         conn
         |> put_status(:ok)
-        |> json(%{artist: artist})
+        |> put_view(AlbumTemplateJSON)
+        |> render(:index, artist: artist)
+
+      # |> json(%{artist: artist})
 
       {:error, changeset} ->
         conn

@@ -2,6 +2,7 @@ defmodule SpotifyApi.Services.Spotify.Api do
   @moduledoc """
   Module for handling Spotify API requests.
   """
+  require Logger
 
   alias SpotifyApi.Services.Spotify.Config
   alias SpotifyApi.Services.Spotify.Authentification
@@ -17,9 +18,11 @@ defmodule SpotifyApi.Services.Spotify.Api do
       {:ok, JSON.decode!(body)}
     else
       {:ok, %HTTPoison.Response{status_code: status_code, body: body}} ->
+        Logger.error("Search failed with status code: #{status_code}, body: #{body}")
         {:error, "Search failed with status code: #{status_code}, body: #{body}"}
 
       {:error, %HTTPoison.Error{reason: reason}} ->
+        Logger.error("Search failed with reason: #{inspect(reason)}")
         {:error, "Search failed with reason: #{inspect(reason)}"}
     end
   end
@@ -32,9 +35,11 @@ defmodule SpotifyApi.Services.Spotify.Api do
       {:ok, JSON.decode!(body)}
     else
       {:ok, %HTTPoison.Response{status_code: status_code, body: body}} ->
+        Logger.error("Get artist albums failed with status code: #{status_code}, body: #{body}")
         {:error, "Get artist albums failed with status code: #{status_code}, body: #{body}"}
 
       {:error, %HTTPoison.Error{reason: reason}} ->
+        Logger.error("Get artist albums failed with reason: #{inspect(reason)}")
         {:error, "Get artist albums failed with reason: #{inspect(reason)}"}
     end
   end
